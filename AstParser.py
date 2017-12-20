@@ -20,7 +20,7 @@ def dumpnode(node, indent):
     # ...
     text = node.spelling or node.displayname
     kind = str(node.kind)[str(node.kind).index('.')+1:]
-    # print ' ' * indent,'{} {}'.format(kind, text)
+    print ' ' * indent,'{} {}'.format(kind, text)
     for i in node.get_children():
         dumpnode(i, indent + 2)
 
@@ -38,8 +38,9 @@ def main():
     tu = index.parse(a, ['-x', 'c++', '-std=c++11', '-D__CODE_GENERATOR__'])
     # index = clang.cindex.Index.create()
     # tu = index.parse(a, ['-x', 'c++', '-std=c++11', '-D__CODE_GENERATOR__'])
-    # print tu.cursor
-    dumpnode(tu.cursor, 0)
+    b = dumpnode(tu.cursor, 0)
+    print b
+
 
 if __name__ == '__main__':
     main()
